@@ -6,6 +6,8 @@ void main() {
 }
 
 class CalculatorApp extends StatelessWidget {
+  const CalculatorApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,6 +32,8 @@ class CalculatorApp extends StatelessWidget {
 }
 
 class CalculatorHomePage extends StatefulWidget {
+  const CalculatorHomePage({super.key});
+
   @override
   _CalculatorHomePageState createState() => _CalculatorHomePageState();
 }
@@ -46,7 +50,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
       } else if (text == '=') {
         try {
           final expression = Expression.parse(_expression);
-          final evaluator = const ExpressionEvaluator();
+          const evaluator = ExpressionEvaluator();
           final result = evaluator.eval(expression, {});
           _result = result.toString();
         } catch (e) {
@@ -62,14 +66,14 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
     return Expanded(
       child: ElevatedButton(
         onPressed: () => _onPressed(text),
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 24),
-        ),
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
           backgroundColor: color ?? Colors.grey[800],
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 24),
         ),
       ),
     );
@@ -79,7 +83,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Franky\'s Flutter Calculator'),
+        title: const Text('Franky\'s Flutter Calculator'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -94,11 +98,12 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
                   children: [
                     Text(
                       _expression,
-                      style: TextStyle(fontSize: 32, color: Colors.white70),
+                      style:
+                          const TextStyle(fontSize: 32, color: Colors.white70),
                     ),
                     Text(
                       _result,
-                      style: TextStyle(fontSize: 48, color: Colors.white),
+                      style: const TextStyle(fontSize: 48, color: Colors.white),
                     ),
                   ],
                 ),
