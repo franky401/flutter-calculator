@@ -52,6 +52,17 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
     });
   }
 
+  void _modulus() {
+    setState(() {
+      List<String> parts = _display.split('%');
+      if (parts.length == 2) {
+        double num1 = double.tryParse(parts[0]) ?? 0;
+        double num2 = double.tryParse(parts[1]) ?? 1;
+        _display = (num1 % num2).toString();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,6 +98,14 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
               ElevatedButton(
                 onPressed: _squareNumber,
                 child: Text('x²'),
+              ),
+              ElevatedButton(
+                onPressed: () => _onPressed('%'),
+                child: Text('%'),
+              ),
+              ElevatedButton(
+                onPressed: _modulus,
+                child: Text('='),
               ),
             ],
           ),
